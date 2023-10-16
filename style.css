@@ -6,16 +6,35 @@
     /* border: 1px solid red; */
 }
 
-
-body {
-
+:root {
+    --main-clr: #DADDB1;
+    --accent-clr-1: #B3A492;
+    --accent-clr-2: #BFB29E;
+    --accent-clr-3: #D6C7AE;
+    --accent-white: whitesmoke;
 }
 
+
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    flex-grow: 1;
+}
+
+footer {
+    flex-shrink: 0;
+}
 
 /* HEADER */
 
 header {
-    background-color: grey;
+    background-color: var(--main-clr);
+
 }
 
 .header-section {
@@ -24,6 +43,18 @@ header {
     padding: 1rem;
     
 }
+/* header-text */
+.header-section h1 {
+    color: whitesmoke;
+}
+
+.header-section button {
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    color: var(white)
+}
+
 
 /* CARDS */
 
@@ -48,10 +79,10 @@ header {
 .card{
     padding: 1rem;
     background-color: whitesmoke;
-    border: 1px solid green;
     display: flex;
     flex-direction: column;
     row-gap: 5px;
+    border-radius: 10px;
 }
 
 .book-info {
@@ -68,8 +99,7 @@ header {
 
 footer {
     background-color: red;
-    margin-top: auto;
-    margin-bttom: 0;
+
 }
 
 
@@ -83,6 +113,22 @@ footer {
         width: 70%;
         
     }
+    
+}
+
+/* dialog */
+
+dialog {
+    border: none;
+    background-color: whitesmoke;
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+}
+
+dialog form {
     
 }
 
