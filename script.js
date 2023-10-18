@@ -39,13 +39,15 @@ function Book(title,author,pages,read) {
     this.read = read;
 }
 
-let bookOne = new Book("game of thrones","george",1232,true)
-let bookTwo = new Book("game of asda","lewis",1232,false)
+// let bookOne = new Book("game of thrones","george",1232,true)
+// let bookTwo = new Book("game of asda","lewis",1232,false)
 
-myLibrary.push(bookOne)
-myLibrary.push(bookTwo)
+// myLibrary.push(bookOnje)
+// myLibrary.push(bookTwo)
 
 form.addEventListener('submit', function(event) {
+
+
 
     event.preventDefault();
     console.log('button is clicked!')
@@ -66,33 +68,44 @@ form.addEventListener('submit', function(event) {
     dialog.close()
 
     myLibrary.forEach((book) => {
-        console.log(book.title)
-        console.log(book.author)
+        console.log('adding')
+        addCard(book.title,book.author,book.pages,book.read)
 
 }) 
-
+    const inputs = document.querySelectorAll('input');
     
+    inputs.forEach(input => {
+        input.value = '';
+    })
+    
+
 })
 
-// loop through library array
-// get each element inside array
-// assign text content for each elmeent for card
-// assign class for card
+function addCard(title,author,pages,read) {
+    // function that adds card element into DOM
+    if (read == true) {
+        read = 'Finished'
+    } else {
+        read = 'Currently Reading'
+    }
+    let textContentArray = [title,author,pages,read]
+    const card = document.querySelector('.card , .placeholder');
+    const cardContainer = document.querySelector('.card-container')
 
-// let newCard = createElement('div')
-// let cardContent = createElement('div')
+    let newCard = card.cloneNode(true)
+    newCard.classList.toggle('placeholder')
+    let bookInfo = newCard.querySelector('.book-info');
 
-// let title = createElement('div')
-// let author = createElement('div')
-// let pages = createElement('div')
-// let read = createElement('div')
+    let cardContents = bookInfo.children;
+    console.log(cardContents)
+    console.log(cardContents[0])
+    for (let i = 0; i < cardContents.length; i++) {
+        cardContents[i].textContent = textContentArray[i]
 
-myLibrary.forEach((book) => {
-    console.log(book.title)
-    console.log(book.author)
-
-}) 
-
+    }
+    cardContainer.appendChild(newCard);
+        
+}
 
 
 
