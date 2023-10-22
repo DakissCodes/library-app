@@ -1,6 +1,7 @@
 const addBookModal = document.querySelector('#add-book-modal');
 const addBook = document.querySelector('.add-book');
-const closeAddBookModal = document.querySelector('.close-dialog');
+const closeAddBookModal = document.querySelector('dialog > .close-dialog');
+
 
 
 // MAIN TASkS
@@ -16,11 +17,12 @@ const closeAddBookModal = document.querySelector('.close-dialog');
 
 
 addBook.addEventListener('click', () => {
-
+    addBookModal.classList.toggle('closed')
     addBookModal.showModal();
 })
 
 closeAddBookModal.addEventListener('click', () => {
+    addBookModal.classList.toggle('closed')
     addBookModal.close();
 })
 
@@ -63,6 +65,8 @@ form.addEventListener('submit', function(event) {
         input.value = '';
         input.checked = false;
     })
+    addBookModal.classList.toggle('closed')
+    
     
     
 })
@@ -129,7 +133,9 @@ function addBooksDOM() {
             
             cardUpdateOnGoing = newCard; 
             // show modal
+            updateBookModal.classList.toggle('closed')
             updateBookModal.showModal()
+            
             // index of card
             let indexBook = newCard.getAttribute('index');
             let cardObj = myLibrary[indexBook];
@@ -194,6 +200,7 @@ const submitUpdateBtn = updateBookModal.querySelector('.submit-book').children[0
 submitUpdateBtn.textContent = 'Update'
 
 updateBookModal.querySelector('.close-dialog').addEventListener('click', function() {
+    updateBookModal.classList.toggle('closed')
     updateBookModal.close()
 })
 
@@ -237,6 +244,7 @@ submitUpdateBtn.addEventListener('click', function(event) {
     removeAllChildNodes(document.querySelector('.card-container'))
 
     addBooksDOM();
+    updateBookModal.classList.toggle('closed')
     updateBookModal.close();
     
 })

@@ -2,18 +2,20 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
-    /* border: 1px solid red; */
+    font-family: 'Inter';
 }
 
 :root {
-    --main-clr: #DADDB1;
+    --main-clr: #B3A492;
     --accent-clr-1: #B3A492;
     --accent-clr-2: #BFB29E;
     --accent-clr-3: #D6C7AE;
     --accent-white: whitesmoke;
 }
-
+.transparent {
+    background: transparent;
+    border: none;
+}
 
 
 body {
@@ -43,7 +45,11 @@ header {
     padding: 1rem;
     
 }
+
+
+
 /* header-text */
+
 .header-section h1 {
     color: whitesmoke;
 }
@@ -52,7 +58,28 @@ header {
     background-color: transparent;
     border: none;
     font-weight: bold;
-    color: var(white)
+}
+    
+.header-section button > div {
+    color: whitesmoke;
+    font-weight: 500;
+}
+
+
+/* add book section */
+
+.add-book {
+}
+
+.add-book {
+    color: var(--main-clr);
+    font-weight: 500;
+    padding: .5rem;
+}
+
+.add-book:hover {
+    background-color: whitesmoke;
+    border-radius: 10px;
 }
 
 
@@ -122,13 +149,47 @@ footer {
 
 dialog {
     border: none;
+    display: flex;
     background-color: whitesmoke;
     padding: 20px;
     border-radius: 10px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 100px;
+    flex-direction: column;
+    
 }
+
+.closed {
+    display: none;
+}
+
+
+.close-dialog {
+    background-color: var(--accent-clr-2);
+    padding: 3px;
+    border-radius: 5px;
+    align-self: flex-end;
+    display: flex;
+
+}
+.close-dialog > div {
+    color: white;
+    font-weight: 500;
+}
+
+
+
+
+
+
+
+
+
+    
+
+
+
 
 dialog form {
     
