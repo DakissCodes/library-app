@@ -1,37 +1,39 @@
-// ADDING CARD SYSTEM
-// when submit btn is clicked, data is retrieved from all input elements
-// data from each input is assigned into constructor
-// a new book object is made using constructor
-// book object is added into array
-
-
-// dialog
-
-const dialog = document.querySelector('dialog');
+const addBookModal = document.querySelector('#add-book-modal');
 const addBook = document.querySelector('.add-book');
-const closeDialog = document.querySelector('.close-dialog');
+const closeAddBookModal = document.querySelector('.close-dialog');
+
+
+// MAIN TASkS
+// When submit is clicked, all values on input of modal (submit) are created as a new Object
+// Get index of that object of library and set to data attribute on div, attach this when updating the dom
+// because when a card is removed, the index of the card will change
+// Update feature: 
+// When update is clicked, refer that button to the div containing index attribute
+// access library object, and use that to fill placeholders
+// when update submit is clicked, all input values must update the object in library
+// then update dom using updateDOM function
 
 
 
 addBook.addEventListener('click', () => {
-    dialog.showModal();
+
+    addBookModal.showModal();
 })
 
-closeDialog.addEventListener('click', () => {
-    dialog.close();
+closeAddBookModal.addEventListener('click', () => {
+    addBookModal.close();
 })
 
+// input values of addbook modal
+const submitBtn = document.querySelector('.submit-book');
+const form = document.getElementById('add-book-form');
+const bookTitle = document.querySelector('input[name="book-title"]');
+const bookAuthor = document.querySelector('input[name="book-author"]');
+const bookPages = document.querySelector('input[name="book-pages"]');
+const bookRead = document.querySelector('input[name="book-read"]');
+const myLibrary = [];
 
-// submit button
-
-const submitBtn = document.querySelector('.submit-book')
-const form = document.getElementById('add-book-form')
-const bookTitle = document.querySelector('input[name="book-title"]')
-const bookAuthor = document.querySelector('input[name="book-author"]')
-const bookPages = document.querySelector('input[name="book-pages"]')
-const bookRead = document.querySelector('input[name="book-read"]')
-const myLibrary = []
-
+// book constructor
 function Book(title,author,pages,read) {
     this.title = title;
     this.author = author;
@@ -39,77 +41,204 @@ function Book(title,author,pages,read) {
     this.read = read;
 }
 
-// let bookOne = new Book("game of thrones","george",1232,true)
-// let bookTwo = new Book("game of asda","lewis",1232,false)
-
-// myLibrary.push(bookOnje)
-// myLibrary.push(bookTwo)
-
 form.addEventListener('submit', function(event) {
 
-
-
     event.preventDefault();
-    console.log('button is clicked!')
-    var title = bookTitle.value
-    var author = bookAuthor.value
-    var pages = bookPages.value
-    var read = ''
-    if (bookRead.checked == true) {
-        read = true
-    } else {
-        read = false
-    }
+    // 
+
     
-    newBook = new Book(title,author,pages,read)
+    newBook = new Book(bookTitle.value,bookAuthor.value,bookPages.value,bookRead.checked)
     
+    // object gets pushed into the library
     myLibrary.push(newBook)
 
-    dialog.close()
-
-    myLibrary.forEach((book) => {
-        console.log('adding')
-        addCard(book.title,book.author,book.pages,book.read)
-
-}) 
-    const inputs = document.querySelectorAll('input');
+    addBookModal.close()
     
-    inputs.forEach(input => {
+    removeAllChildNodes(document.querySelector('.card-container'))
+    // function refreshes card-container contents (cards)
+    addBooksDOM();
+
+    // removes all placeholder values on add book modal
+    document.querySelectorAll('input').forEach(input => {
         input.value = '';
+        input.checked = false;
     })
     
-
+    
 })
 
-function addCard(title,author,pages,read) {
-    // function that adds card element into DOM
-    if (read == true) {
-        read = 'Finished'
-    } else {
-        read = 'Currently Reading'
+function removeAllChildNodes(parent) {
+    console.log('removed!')
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
     }
-    let textContentArray = [title,author,pages,read]
-    const card = document.querySelector('.card , .placeholder');
-    const cardContainer = document.querySelector('.card-container')
-
-    let newCard = card.cloneNode(true)
-    newCard.classList.toggle('placeholder')
-    let bookInfo = newCard.querySelector('.book-info');
-
-    let cardContents = bookInfo.children;
-    console.log(cardContents)
-    console.log(cardContents[0])
-    for (let i = 0; i < cardContents.length; i++) {
-        cardContents[i].textContent = textContentArray[i]
-
-    }
-    cardContainer.appendChild(newCard);
-        
 }
 
+let cardUpdateOnGoing = '';
+
+function addBooksDOM() {
+
+    myLibrary.forEach((book) => {   
+        
+
+        let readToggle = ''
+        // converts the book.read value of object into text for read button
+        if (book.read == true) {
+            readToggle = 'Read'
+        } else {
+            readToggle = 'Not Read'
+        }
+        
+        
+        // creates an identical card
+        
+        // object values ie. book information from library
+        let textContentArray = [book.title, book.author, book.pages]
+        
+
+        const card = document.querySelector('.card , .placeholder');
+        const cardContainer = document.querySelector('.card-container')
+
+        // new card element (cloned)
+        // for every object there is one newCard element
+        let newCard = card.cloneNode(true)
+        
+        // remove placeholder for copying
+        newCard.classList.toggle('placeholder')
+        
+        // children nodes of book info section on card (info of card display on DOM)
+        let cardContents= newCard.querySelector('.book-info').children;
+
+        // fills in all information from object into DOM or textcontent on book info section
+        for(let i = 0; i < cardContents.length; i++) {
+            cardContents[i].textContent = textContentArray[i]
+        }
+        
+        // add data attribute of index of card on library
+        
+        newCard.setAttribute('index', myLibrary.indexOf(book)) 
+       
+        //  set text content of read button (read/not read)
+        let readBtnContent = newCard.querySelector('.button-sec > .read > div');
+        readBtnContent.textContent = readToggle;
+
+        
+        // update button feature on card
+        newCard.querySelector('.update').addEventListener("click", function() {
+            // when update button on card section is clicked
+            
+            cardUpdateOnGoing = newCard; 
+            // show modal
+            updateBookModal.showModal()
+            // index of card
+            let indexBook = newCard.getAttribute('index');
+            let cardObj = myLibrary[indexBook];
+            // setting place holder values on input 
+            let i = 0;
+            console.log(Object.values(cardObj))
+            for (let value of Object.values(cardObj)) {
+                console.log(value);
+                inputsUpdate[i].value = value;
+                inputsUpdate[i].checked = value;
+                i++
+            }
+        })
 
 
 
+        // remove feature
 
+        newCard.querySelector('.remove').addEventListener('click', function () {
+            let titleValue = newCard.querySelector('.title').textContent;
+            console.log(titleValue)
+            myLibrary.forEach(book=> {
+                if(book.title == titleValue) {
+                    let index = myLibrary.indexOf(book)
+                    console.log(index)
+                    myLibrary.splice(index,1);
+                }
+            })
+            newCard.remove();
+
+
+
+        })
+
+        
+        // read button feature on card!
+        let readBtnCard = newCard.querySelector('.read')
+        readBtnCard.addEventListener('click', function() {
+            let indexBook = newCard.getAttribute('index');
+            let cardObj = myLibrary[indexBook];
+            
+            if (cardObj.read == true) {
+                readBtnCard.querySelector('.read-button-content').textContent = 'Not Read';
+                cardObj.read = false;
+            } else {
+                readBtnCard.querySelector('.read-button-content').textContent = 'Read';
+                cardObj.read = true;
+            }
+
+            
+        })
+
+        cardContainer.appendChild(newCard);
+    })        
+
+
+}
+// creating a clone of addbook modal for updatebook modal
+const updateBookModal = addBookModal.cloneNode(true)
+// update button on updatebook modal
+const submitUpdateBtn = updateBookModal.querySelector('.submit-book').children[0]
+submitUpdateBtn.textContent = 'Update'
+
+updateBookModal.querySelector('.close-dialog').addEventListener('click', function() {
+    updateBookModal.close()
+})
+
+document.body.appendChild(updateBookModal)
+
+
+// all input elements of updatebook modal
+const inputsUpdate = updateBookModal.querySelectorAll('input');
+
+
+submitUpdateBtn.addEventListener('click', function(event) {
+    // when update button is clicked no updatebookmodal
+    event.preventDefault();
+    // get index of card in library
+    let indexBook = cardUpdateOnGoing.getAttribute('index');
+    // we set each value of inputs in updatemodal to the values in book object 
+    // we then use adddom function to update the cards on the screen
+    
+    
+    let inputValues = []
+    
+    for(let i = 0; i < inputsUpdate.length; i++) {
+        if (i == 3) {
+            inputValues.push(inputsUpdate[i].checked)
+        } else {
+            inputValues.push(inputsUpdate[i].value)
+        }
+    }
+    
+    // replace each value from object with new values from inputValues
+    //
+    console.log(myLibrary[indexBook])
+    let cardObj = myLibrary[indexBook]
+    let i = 0;
+    Object.keys(cardObj).forEach(key=>{
+        cardObj[key] = inputValues[i];
+        i++;
+    })
+    
+    console.log(myLibrary[indexBook])
+    removeAllChildNodes(document.querySelector('.card-container'))
+
+    addBooksDOM();
+    updateBookModal.close();
+    
+})
 
 
