@@ -198,12 +198,13 @@ const updateBookModal = addBookModal.cloneNode(true)
 // update button on updatebook modal
 const submitUpdateBtn = updateBookModal.querySelector('.submit-book').children[0]
 submitUpdateBtn.textContent = 'Update'
-
+updateBookModal.setAttribute('id','update-book-modal')
 updateBookModal.querySelector('.close-dialog').addEventListener('click', function() {
     updateBookModal.classList.toggle('closed')
     updateBookModal.close()
 })
 
+updateBookModal.querySelector('p').textContent = 'Update a Book'
 document.body.appendChild(updateBookModal)
 
 

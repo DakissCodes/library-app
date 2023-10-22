@@ -79,7 +79,7 @@ header {
 
 .add-book:hover {
     background-color: whitesmoke;
-    border-radius: 10px;
+    border-radius: 3px;
 }
 
 
@@ -152,11 +152,11 @@ dialog {
     display: flex;
     background-color: whitesmoke;
     padding: 20px;
-    border-radius: 10px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 100px;
     flex-direction: column;
+    border-radius: 3px;
     
 }
 
@@ -166,35 +166,100 @@ dialog {
 
 
 .close-dialog {
-    background-color: var(--accent-clr-2);
     padding: 3px;
-    border-radius: 5px;
     align-self: flex-end;
     display: flex;
 
 }
+.close-dialog:hover {
+    background-color: rgb(235, 235, 235);
+    border-radius: 3px;
+}
+
 .close-dialog > div {
-    color: white;
+    color: var(--main-clr);
     font-weight: 500;
 }
 
+#add-book-modal > p,
+#update-book-modal > p{
+    padding: 10px 0px;
+    font-weight: 500;
+    text-align: center;
+}
 
+form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+form div {
+    display: flex;
+    flex-direction: column;
+}
 
+input {
+    padding: 10px;
+    border: none;
+    border: 2px solid whitesmoke;
+    border-radius: 3px;
+}
+input:focus {
+    outline-width: 0;
+    border: 2px solid rgb(188, 188, 188);
+}
 
+label {
+    display: none;
+}
 
+.book-read {
+    flex-direction: row;
+}
 
+.book-read{
+    column-gap: 5px;
+}
 
-
-
-    
-
-
-
-
-dialog form {
+.book-read div {
+    font-size: 12px;
     
 }
 
+.submit-book button {
+    margin-top: 10px;
+    padding: 5px;
+    border: none;
+    border-radius: 3px;
+    background-color: rgb(207, 253, 207);
+}
+.submit-book button:hover {
+    background-color: rgb(187, 227, 187);
+
+}
+
+
+
+
+
+
+/* button section */
+.button-sec button {
+    padding: .2rem .5rem;
+    border: none;
+    border-radius: 3px;
+    font-weight: 500;
+    font-size: 10px;
+    color: white;
+    background-color: var(--accent-clr-3);
+
+
+}
+.button-sec button:hover {
+    background-color: #B3A492;
+
+}
+    
 
 
 
