@@ -118,14 +118,19 @@ function addBooksDOM() {
             cardContents[i].textContent = textContentArray[i]
         }
         
+        let bookPagesTxtContent = cardContents[2].textContent;
+        console.log(bookPagesTxtContent)
+        cardContents[2].textContent = bookPagesTxtContent + ' Pages';
+        
         // add data attribute of index of card on library
         
+         //  set text content of read button (read/not read)
+         let readBtnContent = newCard.querySelector('.button-sec > .read > div');
+         readBtnContent.textContent = readToggle;
+         if (readToggle == 'Read') {
+            readBtnContent.parentElement.classList.toggle('read-not') 
+         }
         newCard.setAttribute('index', myLibrary.indexOf(book)) 
-       
-        //  set text content of read button (read/not read)
-        let readBtnContent = newCard.querySelector('.button-sec > .read > div');
-        readBtnContent.textContent = readToggle;
-
         
         // update button feature on card
         newCard.querySelector('.update').addEventListener("click", function() {
@@ -149,8 +154,8 @@ function addBooksDOM() {
                 i++
             }
         })
-
-
+        
+        
 
         // remove feature
 
@@ -165,9 +170,9 @@ function addBooksDOM() {
                 }
             })
             newCard.remove();
+            
 
-
-
+            
         })
 
         
@@ -177,12 +182,15 @@ function addBooksDOM() {
             let indexBook = newCard.getAttribute('index');
             let cardObj = myLibrary[indexBook];
             
+            console.log(newCard.querySelector('.button-sec .read').classList)
             if (cardObj.read == true) {
                 readBtnCard.querySelector('.read-button-content').textContent = 'Not Read';
                 cardObj.read = false;
+                newCard.querySelector('.button-sec .read').classList.toggle('read-not')
             } else {
                 readBtnCard.querySelector('.read-button-content').textContent = 'Read';
                 cardObj.read = true;
+                newCard.querySelector('.button-sec .read').classList.toggle('read-not')
             }
 
             

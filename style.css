@@ -6,11 +6,14 @@
 }
 
 :root {
+    
     --main-clr: #B3A492;
     --accent-clr-1: #B3A492;
     --accent-clr-2: #BFB29E;
     --accent-clr-3: #D6C7AE;
     --accent-white: whitesmoke;
+    --input-box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    --card-box-shadow: box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .transparent {
     background: transparent;
@@ -69,11 +72,9 @@ header {
 /* add book section */
 
 .add-book {
-}
-
-.add-book {
     color: var(--main-clr);
     font-weight: 500;
+    margin: 12px;
     padding: .5rem;
 }
 
@@ -84,10 +85,6 @@ header {
 
 
 /* CARDS */
-
-.add-book {
-    margin: 12px;
-}
 
 .add-book-section {
     margin-top: 1rem;
@@ -101,15 +98,18 @@ header {
     display: flex;
     row-gap: 1rem;
     flex-direction: column;
+
 }
 
 .card{
     padding: 1rem;
-    background-color: whitesmoke;
+    background-color: rgb(246, 246, 246);
     display: flex;
     flex-direction: column;
-    row-gap: 5px;
+    row-gap: 20px;
     border-radius: 10px;
+    box-shadow: var(--input-box-shadow);
+    justify-content: space-between;
 }
 .placeholder {
     display: none;
@@ -118,6 +118,15 @@ header {
     display: flex;
     flex-direction: column;
     row-gap: 5px;
+    
+}
+
+.book-info div {
+    text-align: center;    
+}
+.book-info .title {
+    font-weight: bold;
+    
 }
 
 .button-sec {
@@ -142,6 +151,13 @@ footer {
         width: 70%;
         
     }
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 20px;
+        grid-template-rows: repeat(auto,200px);
+    }
+
     
 }
 
@@ -191,7 +207,7 @@ dialog {
 form {
     display: flex;
     flex-direction: column;
-    row-gap: 5px;
+    row-gap: 15px;
 }
 form div {
     display: flex;
@@ -201,9 +217,16 @@ form div {
 input {
     padding: 10px;
     border: none;
-    border: 2px solid whitesmoke;
+    /* border: 2px solid whitesmoke; */
     border-radius: 3px;
+    box-shadow: var(--input-box-shadow);
+    border: 2px solid transparent;
 }
+
+input[type="checkbox"] {
+    box-shadow: none;
+}
+
 input:focus {
     outline-width: 0;
     border: 2px solid rgb(188, 188, 188);
@@ -215,11 +238,9 @@ label {
 
 .book-read {
     flex-direction: row;
+    column-gap: 2px;
 }
 
-.book-read{
-    column-gap: 5px;
-}
 
 .book-read div {
     font-size: 12px;
@@ -261,7 +282,15 @@ label {
 }
     
 
+.button-sec .read-done {
+    background-color: rgb(124, 250, 124);
+}
 
+.button-sec .read-not {
+    
+    background-color: rgb(254, 102, 102);
+}
 
-
-
+.title {
+    color: var(--accent-clr-2)
+}

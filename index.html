@@ -20,21 +20,22 @@
         <form action="" id="add-book-form">
             <div class="book-title">
                 <label for="book-title">Title</label> 
-                <input type="text" name="book-title" placeholder="Title">
+                <input type="text" name="book-title" placeholder="Title" required>
 
             </div>
             <div class="book-author">
                 <label for="book-author">Author</label> 
-                <input type="text" name="book-author" placeholder="Author">
+                <input type="text" name="book-author" placeholder="Author" required>
 
             </div>
             <div class="book-pages">
                 <label for="book-pages">Pages</label> 
-                <input type="text" name="book-pages" placeholder="Pages">
+                <input type="text" name="book-pages" placeholder="Pages" required>
             </div>
             
             <div class="book-read">
                 <input type="checkbox" name="book-read" value="read" >
+                <span class="checkmark"></span>
                 <div>Read</div>
                 <label for="book-read">Read</label> 
             </div>
@@ -74,9 +75,10 @@
                 <div class="title"></div>
                 <div class="author"></div>
                 <div class="progress"></div>
+                
             </div>
             <div class="button-sec">
-                <button class="read">
+                <button class="read read-done read-not">
                     <div class="read-button-content">read</div> 
                 </button>
                 <button class="update">
