@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Library App</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,700&family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,300;1,600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,700&family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     
-    <dialog id="add-book-modal" close class="closed">
+    <dialog id="add-book-modal" close class="closed transition-ease">
         <button class="close-dialog transparent">
             <div>Close</div>
         </button>
@@ -41,7 +41,7 @@
             </div>
 
             <div class="submit-book">
-                <button type="submit">
+                <button type="submit" class="transition-ease">
                     Submit
                 </button>
             </div>
@@ -65,12 +65,12 @@
     
         
         <div class="add-book-section">
-            <button class="add-book transparent">
+            <button class="add-book transparent transition-ease">
                 <div>+ Add Book</div> 
             </button>
         </div>
 
-        <div class="card placeholder">
+        <div class="card placeholder transition-ease">
             <div class="book-info">
                 <div class="title"></div>
                 <div class="author"></div>

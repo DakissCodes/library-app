@@ -2,17 +2,23 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Inter';
+    font-family: 'Poppins';
 }
 
 :root {
     
-    --main-clr: #B3A492;
-    --accent-clr-1: #B3A492;
-    --accent-clr-2: #BFB29E;
-    --accent-clr-3: #D6C7AE;
+    --dark-orange: rgb(209, 106, 29);
+    --pastel-blue: rgb(223, 231, 242);  
+    --pastel-beige: rgb(240, 199, 177);
+    --pastel-white:rgb(255, 248, 245);
+    --pastel-grey:rgb(204, 204, 204);
+    
+    --main-clr: #B2A492;
+    --accent-clr-2: #B3A492;
+    --accent-clr-3: #BFB29E;
+    --accent-clr-4: #D6C7AE;
     --accent-white: whitesmoke;
-    --input-box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    --input-box-shadow: rgba(-1, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     --card-box-shadow: box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .transparent {
@@ -24,6 +30,7 @@
 body {
     min-height: 100vh;
     display: flex;
+    background-color: var(--pastel-white);
     flex-direction: column;
 }
 
@@ -37,11 +44,6 @@ footer {
 
 /* HEADER */
 
-header {
-    background-color: var(--main-clr);
-
-}
-
 .header-section {
     display: flex;
     justify-content: space-between;
@@ -54,7 +56,9 @@ header {
 /* header-text */
 
 .header-section h1 {
-    color: whitesmoke;
+    color: black;
+    
+    font-weight: 600;
 }
 
 .header-section button {
@@ -63,31 +67,32 @@ header {
     font-weight: bold;
 }
     
-.header-section button > div {
-    color: whitesmoke;
-    font-weight: 500;
+.header-section button div {
+    color: black;
+    font-weight: 600;
 }
 
 
 /* add book section */
 
 .add-book {
-    color: var(--main-clr);
-    font-weight: 500;
-    margin: 12px;
-    padding: .5rem;
+    color: white;
+    font-weight: 300;
+    font-size: 10px;
+    padding: 5px 10px;
+    background-color: var(--dark-orange);
+    border-radius: 20px;
 }
 
 .add-book:hover {
-    background-color: whitesmoke;
-    border-radius: 3px;
+   background-color: #B2A492; 
+   transform: scale(1.03);
 }
 
-
-/* CARDS */
+/* kS */
 
 .add-book-section {
-    margin-top: 1rem;
+    
     display: flex;
     justify-content: center;
     align-content: center;
@@ -101,13 +106,17 @@ header {
 
 }
 
-.card{
+.card:hover {
+    transform: scale(1.03);
+}
+
+.card {
+    opacity: 70%;
     padding: 1rem;
-    background-color: rgb(246, 246, 246);
+    background-color: var(--pastel-blue);
     display: flex;
     flex-direction: column;
     row-gap: 20px;
-    border-radius: 10px;
     box-shadow: var(--input-box-shadow);
     justify-content: space-between;
 }
@@ -122,22 +131,36 @@ header {
 }
 
 .book-info div {
-    text-align: center;    
+
 }
 .book-info .title {
-    font-weight: bold;
-    
+    font-weight: 600;
+    color: black;
 }
+
+.book-info .author,
+.book-info .progress{
+    font-size: 12px;
+
+}
+
+
 
 .button-sec {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     column-gap: 8px;
 }
 
 footer {
-    background-color: whitesmoke;
+    background-color: var(--pastel-white);
+    display: flex;
+    justify-content: center;
+}
 
+footer div {
+
+    font-size: 10px;
 }
 
 
@@ -153,7 +176,7 @@ footer {
     }
     .card-container {
         display: grid;
-        grid-template-columns: repeat(3,1fr);
+        grid-template-columns: repeat(2,1fr);
         gap: 20px;
         grid-template-rows: repeat(auto,200px);
     }
@@ -167,19 +190,18 @@ dialog {
     border: none;
     display: flex;
     background-color: whitesmoke;
-    padding: 20px;
+    padding: 20px ;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 100px;
+    margin-top: 50px;
     flex-direction: column;
-    border-radius: 3px;
+    border-radius: 5px;
     
 }
 
 .closed {
     display: none;
 }
-
 
 .close-dialog {
     padding: 3px;
@@ -193,7 +215,7 @@ dialog {
 }
 
 .close-dialog > div {
-    color: var(--main-clr);
+    color: var(--dark-orange);
     font-weight: 500;
 }
 
@@ -207,29 +229,35 @@ dialog {
 form {
     display: flex;
     flex-direction: column;
-    row-gap: 15px;
+    row-gap: 8px;
 }
 form div {
     display: flex;
     flex-direction: column;
 }
 
+
 input {
-    padding: 10px;
+    padding: 5px;
     border: none;
     /* border: 2px solid whitesmoke; */
     border-radius: 3px;
     box-shadow: var(--input-box-shadow);
-    border: 2px solid transparent;
+    border: 1.5px solid transparent;
+    font-size: 12px;
+    transition: 0.5s;
 }
 
 input[type="checkbox"] {
     box-shadow: none;
 }
 
+
+
 input:focus {
     outline-width: 0;
-    border: 2px solid rgb(188, 188, 188);
+    border: 1.5px solid rgb(188, 188, 188);
+    
 }
 
 label {
@@ -248,37 +276,42 @@ label {
 }
 
 .submit-book button {
-    margin-top: 10px;
+    align-self: center;
+    width: 80px;
     padding: 5px;
     border: none;
-    border-radius: 3px;
-    background-color: rgb(207, 253, 207);
+    border-radius: 25px;
+    background-color: rgb(197, 255, 197);
+    font-size: 10px;
+    font-weight: 600;
+    color: black;
 }
 .submit-book button:hover {
     background-color: rgb(187, 227, 187);
+    transform: scale(1.03);
 
 }
-
-
-
-
-
 
 /* button section */
 .button-sec button {
     padding: .2rem .5rem;
     border: none;
-    border-radius: 3px;
-    font-weight: 500;
+    border-radius: 20px;
+    font-weight: 400;
     font-size: 10px;
-    color: white;
-    background-color: var(--accent-clr-3);
-
-
+    background-color: var(--pastel-grey);
+    color: rgb(104, 104, 104);
+    width: 80px;
+    transition: 0.5s;
 }
 .button-sec button:hover {
+    transform: scale(1.03);
     background-color: #B3A492;
 
+}
+
+.button-sec .read {
+    color: var(--pastel-white)
 }
     
 
@@ -287,10 +320,46 @@ label {
 }
 
 .button-sec .read-not {
-    
     background-color: rgb(254, 102, 102);
 }
 
-.title {
-    color: var(--accent-clr-2)
+
+
+
+
+@keyframes slightEnlarge {
+    from {
+        transform: scale(1);
+    }  
+    to {
+        transform: scale(1.9);
+    }
+}
+
+
+
+.transition-ease {
+    transition: all 0.2s;
+}
+
+
+dialog{
+    animation: scale-in-center 0.7s;
+
+}
+
+@keyframes scale-in-center {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+
+        opacity: 1
+    }
+    
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    } 
+    
 }
